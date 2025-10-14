@@ -18,4 +18,9 @@ constants and other variables. A production consists of two strings, the
 production in P, the identity production A → A is assumed; these symbols
  are called *constants* or  *terminals* .
 
-With a tuple in mind, as long as you have the rules defined as function and the correct axiom, just run the function fractal, which receives a natural number. It will apply the rules n times and tell the result.
+When the auxiliary functions are correctly defined, simply run the fractal function with the number of iterations you want to generate.
+
+### Next steps?
+
+Finish the "substitui" function so it applies each substitution rule correctly.
+Start a function that generates the python code for the turtle graphic generation.

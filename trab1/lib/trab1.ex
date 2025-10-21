@@ -1,42 +1,26 @@
 defmodule Trab do
-  # L-System is defined as a tuple G = (V, w, P)
-  # Where V is the alphabet containing variables and terminals
-  # w is an axiom, a string of symbols from V that defines the inital state
-  # P are the production rules for substitution
-  # Let's do V = (I, F, G, +25, -25, +50, -50, [,])
-  # w = I
-  # P contains the following:
-  # I -> [F][+25F][-25F]
-  # F -> [+50 G +50 G][-50 G -50 G]
-  # G -> F -25 F
-  def axiom, do: "I"
-
-  def i do
-    "[F][+25F][-25F]"
+  # Trab.fractal(0, {["a","b"], ["a"],%{"a"=>["a","b"], "b"=>["a"]}})
+  def fractal(n, {_v,w,p}) when is_integer(n) and n>= 0 do
+    turtle(aux_fractal(w,n,p))
   end
 
-  def f do
-    "[+50G +50G][-50G -50G]"
+  def aux_fractal(producao, 0, _p), do: producao
+
+  def aux_fractal(producao, n, p) do
+    continua = substitui(producao, p)
+    aux_fractal(continua, n-1, p)
   end
 
-  def g do
-    "F-25F"
+  def substitui(producao, p) do
+    Enum.flat_map(producao, fn x ->
+      case Map.fetch(p,x) do
+        {:ok, prod} -> prod
+        :error -> [x]
+      end
+    end)
   end
 
-  def fractal(n) when is_integer(n) and n>=0 do
-    aux_fractal(axiom(), n)
+  def turtle(producao) do
+    producao
   end
-
-  def aux_fractal(minhaString, 0), do: minhaString
-
-  def aux_fractal(minhaString, n) do
-    #aplica a regra
-    continua = substitui(minhaString)
-    aux_fractal(continua, n-1)
-  end
-
-  def substitui(minhaString) do
-    minhaString<>"chiro"
-  end
-
 end

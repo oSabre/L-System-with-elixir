@@ -20,7 +20,10 @@ production in P, the identity production A → A is assumed; these symbols
 
 When the auxiliary functions are correctly defined, simply run the fractal function with the number of iterations you want to generate.
 
-### Next steps?
+There are 3 functions:
 
-Finish the "substitui" function so it applies each substitution rule correctly.
-Start a function that generates the python code for the turtle graphic generation.
+fractal(n, {v,w,p}) 
+
+turtle(n, {v,w,p})
+
+checkprod(prod, n, {v,w,p}))
